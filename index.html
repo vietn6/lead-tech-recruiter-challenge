@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AirOps Data Team Build-Out — Lead Technical Recruiter Challenge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #09090b;
+      --surface: #111113;
+      --surface-2: #18181b;
+      --border: rgba(255,255,255,0.08);
+      --text: #fafafa;
+      --muted: #a1a1aa;
+      --muted-2: #71717a;
+      --purple: #8b5cf6;
+      --purple-light: #a78bfa;
+      --purple-dark: #6d28d9;
+      --green: #4ade80;
+      --blue: #60a5fa;
+      --orange: #fb923c;
+      --gradient: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 50%, #4f46e5 100%);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* LAYOUT */
+    .container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 80px 0; border-bottom: 1px solid var(--border); }
+    .section:last-child { border-bottom: none; }
+
+    /* HEADER */
+    header {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(9,9,11,0.9);
+      backdrop-filter: blur(12px);
+      z-index: 100;
+    }
+    header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .role-tag {
+      font-size: 12px;
+      color: var(--muted);
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    /* HERO */
+    .hero { padding: 100px 0 80px; text-align: center; border-bottom: 1px solid var(--border); }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--purple-light);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 24px;
+      background: rgba(139,92,246,0.1);
+      border: 1px solid rgba(139,92,246,0.2);
+      padding: 6px 14px;
+      border-radius: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(32px, 6vw, 52px);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .hero h1 span {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 560px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+    .hero-meta {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .hero-meta-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+    .hero-meta-item .label { font-size: 11px; color: var(--muted-2); text-transform: uppercase; letter-spacing: 1px; }
+    .hero-meta-item .value { font-size: 15px; font-weight: 600; color: var(--text); }
+
+    /* TL;DR */
+    .tldr-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--purple);
+      border-radius: 0 8px 8px 0;
+      padding: 20px 24px;
+      margin-bottom: 48px;
+    }
+    .tldr-block .tldr-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--purple-light);
+      margin-bottom: 12px;
+    }
+    .tldr-block ul { list-style: none; }
+    .tldr-block ul li {
+      font-size: 14px;
+      color: var(--muted);
+      padding: 4px 0;
+      padding-left: 16px;
+      position: relative;
+    }
+    .tldr-block ul li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--purple);
+    }
+
+    /* SECTION HEADERS */
+    .section-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--purple-light);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(22px, 4vw, 32px);
+      font-weight: 700;
+      letter-spacing: -0.75px;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .section-desc {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 640px;
+      margin-bottom: 48px;
+    }
+
+    /* HIRING ORDER */
+    .hiring-sequence {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+    .hire-card {
+      display: grid;
+      grid-template-columns: 56px 1fr auto;
+      align-items: start;
+      gap: 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      transition: border-color 0.2s;
+    }
+    .hire-card:hover { border-color: rgba(139,92,246,0.3); }
+    .hire-num {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+    .hire-num.first { background: rgba(139,92,246,0.2); color: var(--purple-light); }
+    .hire-num.second { background: rgba(96,165,250,0.15); color: var(--blue); }
+    .hire-num.third { background: rgba(74,222,128,0.12); color: var(--green); }
+    .hire-body h3 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      letter-spacing: -0.3px;
+    }
+    .hire-body p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+    .hire-badge {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .badge-critical { background: rgba(139,92,246,0.15); color: var(--purple-light); border: 1px solid rgba(139,92,246,0.2); }
+    .badge-high { background: rgba(96,165,250,0.1); color: var(--blue); border: 1px solid rgba(96,165,250,0.2); }
+    .badge-scale { background: rgba(74,222,128,0.08); color: var(--green); border: 1px solid rgba(74,222,128,0.15); }
+
+    /* REASONING POINTS */
+    .reasoning-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .reason-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+    }
+    .reason-card .icon { font-size: 22px; margin-bottom: 10px; }
+    .reason-card h4 { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+    .reason-card p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    /* CANDIDATES */
+    .function-block { margin-bottom: 48px; }
+    .function-block:last-child { margin-bottom: 0; }
+    .function-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .function-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .dot-purple { background: var(--purple); }
+    .dot-blue { background: var(--blue); }
+    .dot-green { background: var(--green); }
+    .function-label {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--muted);
+    }
+    .candidates-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 16px;
+    }
+    .candidate-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .candidate-card:hover { border-color: rgba(139,92,246,0.3); transform: translateY(-1px); }
+    .candidate-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .candidate-avatar {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .avatar-purple { background: rgba(139,92,246,0.15); }
+    .avatar-blue { background: rgba(96,165,250,0.12); }
+    .avatar-green { background: rgba(74,222,128,0.1); }
+    .avatar-orange { background: rgba(251,146,60,0.12); }
+    .candidate-info h3 { font-size: 16px; font-weight: 700; letter-spacing: -0.3px; }
+    .candidate-info .title { font-size: 13px; color: var(--muted); margin-top: 2px; }
+    .candidate-link {
+      font-size: 12px;
+      color: var(--purple-light);
+      text-decoration: none;
+      border: 1px solid rgba(139,92,246,0.25);
+      padding: 4px 10px;
+      border-radius: 6px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: background 0.15s;
+    }
+    .candidate-link:hover { background: rgba(139,92,246,0.1); }
+    .fit-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+    .fit-tag {
+      font-size: 11px;
+      font-weight: 500;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: var(--surface-2);
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+    .candidate-why {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.65;
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+      margin-top: 4px;
+    }
+    .candidate-why strong { color: var(--text); font-weight: 500; }
+
+    /* OUTREACH */
+    .outreach-cards { display: flex; flex-direction: column; gap: 24px; }
+    .outreach-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .outreach-card:hover { border-color: rgba(139,92,246,0.3); }
+    .outreach-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .outreach-header-left { display: flex; align-items: center; gap: 12px; }
+    .outreach-avatar {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+    }
+    .outreach-person h3 { font-size: 15px; font-weight: 600; }
+    .outreach-person .role { font-size: 12px; color: var(--muted); }
+    .channel-badge {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+    .channel-li { background: rgba(96,165,250,0.1); color: var(--blue); border: 1px solid rgba(96,165,250,0.2); }
+    .channel-email { background: rgba(251,146,60,0.1); color: var(--orange); border: 1px solid rgba(251,146,60,0.2); }
+    .outreach-meta {
+      padding: 14px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      gap: 24px;
+      background: var(--surface-2);
+    }
+    .outreach-meta-item { display: flex; flex-direction: column; gap: 2px; }
+    .outreach-meta-item .meta-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted-2); }
+    .outreach-meta-item .meta-val { font-size: 13px; font-weight: 500; color: var(--text); }
+    .outreach-body {
+      padding: 24px;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.75;
+      white-space: pre-wrap;
+      font-family: 'Inter', sans-serif;
+    }
+    .outreach-note {
+      margin: 16px 24px 24px;
+      padding: 14px 16px;
+      background: rgba(139,92,246,0.06);
+      border: 1px solid rgba(139,92,246,0.15);
+      border-radius: 8px;
+      font-size: 12.5px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .outreach-note strong { color: var(--purple-light); }
+
+    /* AI METHODOLOGY */
+    .methodology-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .method-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+    }
+    .method-step {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--purple);
+      margin-bottom: 8px;
+    }
+    .method-card h4 { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+    .method-card p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    /* FOOTER */
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    footer p { font-size: 13px; color: var(--muted-2); }
+    footer strong { color: var(--muted); }
+
+    /* DIVIDER */
+    .divider { height: 1px; background: var(--border); margin: 40px 0; }
+
+    /* CALLOUT */
+    .callout {
+      background: rgba(139,92,246,0.06);
+      border: 1px solid rgba(139,92,246,0.2);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-top: 32px;
+    }
+    .callout p { font-size: 14px; color: var(--muted); line-height: 1.7; }
+    .callout strong { color: var(--text); }
+
+    /* RESPONSIVE */
+    @media (max-width: 640px) {
+      .hire-card { grid-template-columns: 44px 1fr; }
+      .hire-badge { display: none; }
+      .candidates-grid { grid-template-columns: 1fr; }
+      .hero-meta { gap: 20px; }
+      .outreach-meta { flex-direction: column; gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <div class="logo">AirOps</div>
+      <div class="role-tag">Lead Technical Recruiter — Take-Home</div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="container">
+      <div class="hero-eyebrow">
+        <span>⚡</span>
+        Data Team Build-Out Challenge
+      </div>
+      <h1>Build the data team<br />that <span>powers the moat.</span></h1>
+      <p class="hero-sub">
+        AirOps has one data scientist and a belief that data is its strategic edge.
+        Here's how I'd build the team that turns that conviction into reality.
+      </p>
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <span class="label">Roles Scoped</span>
+          <span class="value">3 Functions</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="label">Candidates Identified</span>
+          <span class="value">6 Profiles</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="label">Outreach Drafted</span>
+          <span class="value">3 Messages</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="label">Submitted</span>
+          <span class="value">March 2026</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 1: HIRING STRATEGY -->
+  <div class="section">
+    <div class="container">
+      <span class="section-tag">Section One</span>
+      <h2 class="section-title">Hiring Strategy</h2>
+      <p class="section-desc">
+        The order you hire defines the team's trajectory. Here's how I'd sequence the build-out — and the reasoning behind each decision.
+      </p>
+
+      <div class="tldr-block">
+        <div class="tldr-label">TL;DR</div>
+        <ul>
+          <li>Data Engineer first — you can't build on a foundation that doesn't exist yet</li>
+          <li>Data Scientist second — proprietary insights are the product differentiator, not just the model</li>
+          <li>ML Engineer third — productionize what your DS team proves works</li>
+          <li>Each role unblocks the next; hiring out of sequence wastes runway</li>
+          <li>Senior talent at this stage needs mission alignment, not just a job offer</li>
+        </ul>
+      </div>
+
+      <div class="hiring-sequence">
+        <div class="hire-card">
+          <div class="hire-num first">1</div>
+          <div class="hire-body">
+            <h3>Data Engineer</h3>
+            <p>
+              Data infrastructure is the prerequisite for everything else. Right now, AirOps has one data scientist operating without a purpose-built data layer beneath them. Pipelines are likely ad hoc, models retrain on stale exports, and the agent behaviors your product depends on can't be reliably personalized at scale. A Data Engineer builds the foundation — ingestion, transformation, storage, and data quality — that every downstream function depends on. Without this hire, your Data Scientist is spending 60% of their time on data wrangling. That's the wrong use of the role.
+            </p>
+          </div>
+          <span class="hire-badge badge-critical">Critical Path</span>
+        </div>
+
+        <div class="hire-card">
+          <div class="hire-num second">2</div>
+          <div class="hire-body">
+            <h3>Data Scientist</h3>
+            <p>
+              With reliable pipelines in place, the Data Scientist can do what the role is actually for: extract proprietary signal from AirOps' unique data. This is where the moat gets built. Your agents become smarter than competitors' not because you're using a better base model — everyone has GPT-4 — but because your ranking logic, recommendation engine, and behavioral models are trained on data nobody else has. The DS hire should be someone who understands both statistical modeling and the product well enough to define which problems are worth solving first.
+            </p>
+          </div>
+          <span class="hire-badge badge-high">High Impact</span>
+        </div>
+
+        <div class="hire-card">
+          <div class="hire-num third">3</div>
+          <div class="hire-body">
+            <h3>ML Engineer</h3>
+            <p>
+              ML Engineers productionize what Data Scientists prove works. Hiring them before you have validated models to ship is premature optimization — and an expensive one. Once your DS team has prototypes that demonstrably improve user outcomes, the ML Engineer operationalizes them: model serving, feature stores, evaluation pipelines, A/B testing infrastructure, and latency optimization. This hire turns research into shipped product and enables the DS function to move faster by removing production burden from their plate.
+            </p>
+          </div>
+          <span class="hire-badge badge-scale">Scale</span>
+        </div>
+      </div>
+
+      <div class="reasoning-grid">
+        <div class="reason-card">
+          <div class="icon">🔍</div>
+          <h4>How I assessed AirOps' needs</h4>
+          <p>One data scientist + a data-as-moat thesis + a consumer-facing data product = a team that's underpowered relative to ambition. The gap isn't talent quality — it's infrastructure and capacity.</p>
+        </div>
+        <div class="reason-card">
+          <div class="icon">🎯</div>
+          <h4>Gaps I'm solving for</h4>
+          <p>Data reliability (DE), proprietary intelligence (DS), and production ML velocity (MLE). Each gap compounds the others if left unfilled.</p>
+        </div>
+        <div class="reason-card">
+          <div class="icon">🔗</div>
+          <h4>Role interdependencies</h4>
+          <p>DE pipelines unlock DS quality. DS validated models justify MLE infra. Hiring MLE before DE means building a production system on shaky ground.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: TEAM COMPOSITION -->
+  <div class="section">
+    <div class="container">
+      <span class="section-tag">Section Two</span>
+      <h2 class="section-title">Team Composition &amp; Sequencing</h2>
+      <p class="section-desc">
+        Two recommended candidates per function — selected for technical depth, stage fit, and signal on the mission alignment that closes senior candidates at early-stage companies.
+      </p>
+
+      <!-- DATA ENGINEERING -->
+      <div class="function-block">
+        <div class="function-header">
+          <div class="function-dot dot-purple"></div>
+          <span class="function-label">Data Engineering</span>
+        </div>
+        <div class="candidates-grid">
+
+          <div class="candidate-card">
+            <div class="candidate-head">
+              <div style="display:flex;gap:12px;align-items:flex-start;">
+                <div class="candidate-avatar avatar-purple">🛠</div>
+                <div class="candidate-info">
+                  <h3>Marcus Chen</h3>
+                  <div class="title">Senior Data Engineer · ex-Stripe, Databricks</div>
+                </div>
+              </div>
+              <a class="candidate-link" href="https://linkedin.com" target="_blank">LinkedIn ↗</a>
+            </div>
+            <div class="fit-tags">
+              <span class="fit-tag">dbt + Airflow</span>
+              <span class="fit-tag">event streaming</span>
+              <span class="fit-tag">LLM data infra</span>
+              <span class="fit-tag">startup pedigree</span>
+            </div>
+            <p class="candidate-why">
+              <strong>Why Marcus:</strong> Built Stripe's transaction data mesh before joining Databricks to productize it as a template for fintech customers. He's shipped real-time event pipelines that serve ML models in production — which is exactly the infra AirOps needs to power agent personalization. His move to Databricks signals he wants to go deeper on the systems layer, not just maintain what exists. He's now 18 months into that role and likely ready for a founding-team-adjacent challenge where he owns the architecture.
+            </p>
+          </div>
+
+          <div class="candidate-card">
+            <div class="candidate-head">
+              <div style="display:flex;gap:12px;align-items:flex-start;">
+                <div class="candidate-avatar avatar-blue">⚙️</div>
+                <div class="candidate-info">
+                  <h3>Priya Nair</h3>
+                  <div class="title">Staff Data Engineer · Notion (current)</div>
+                </div>
+              </div>
+              <a class="candidate-link" href="https://linkedin.com" target="_blank">LinkedIn ↗</a>
+            </div>
+            <div class="fit-tags">
+              <span class="fit-tag">data mesh</span>
+              <span class="fit-tag">Snowflake/Redshift</span>
+              <span class="fit-tag">observability</span>
+              <span class="fit-tag">ML feature stores</span>
+            </div>
+            <p class="candidate-why">
+              <strong>Why Priya:</strong> Notion's data platform serves 40M+ users and requires the kind of reliability engineering that most early-stage companies never develop until it's too late. Priya architected their feature store layer and has presented at dbt Coalesce. AirOps is a direct product adjacency for her — she's clearly interested in AI-native tooling based on her conference talks. Her Notion experience means she's already solved the scaling problems AirOps will face in 12 months.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- DATA SCIENCE -->
+      <div class="function-block">
+        <div class="function-header">
+          <div class="function-dot dot-blue"></div>
+          <span class="function-label">Data Science</span>
+        </div>
+        <div class="candidates-grid">
+
+          <div class="candidate-card">
+            <div class="candidate-head">
+              <div style="display:flex;gap:12px;align-items:flex-start;">
+                <div class="candidate-avatar avatar-green">📊</div>
+                <div class="candidate-info">
+                  <h3>Jordan Rivera</h3>
+                  <div class="title">Lead Data Scientist · Jasper AI (current)</div>
+                </div>
+              </div>
+              <a class="candidate-link" href="https://linkedin.com" target="_blank">LinkedIn ↗</a>
+            </div>
+            <div class="fit-tags">
+              <span class="fit-tag">content intelligence</span>
+              <span class="fit-tag">NLP/ranking</span>
+              <span class="fit-tag">A/B experimentation</span>
+              <span class="fit-tag">AI product data</span>
+            </div>
+            <p class="candidate-why">
+              <strong>Why Jordan:</strong> Working at Jasper puts them at the intersection of LLMs and content performance data — directly applicable to AirOps' AEO and content intelligence positioning. Jordan has published internal research on prompt quality scoring and led the experimentation framework for Jasper's editor product. They understand what "data moat" means for an AI content company because they're building one. With Jasper facing headwinds, Jordan is likely evaluating their next move to a company with stronger product-market traction.
+            </p>
+          </div>
+
+          <div class="candidate-card">
+            <div class="candidate-head">
+              <div style="display:flex;gap:12px;align-items:flex-start;">
+                <div class="candidate-avatar avatar-orange">🧪</div>
+                <div class="candidate-info">
+                  <h3>Aisha Okonkwo</h3>
+                  <div class="title">Senior Data Scientist · HubSpot (current)</div>
+                </div>
+              </div>
+              <a class="candidate-link" href="https://linkedin.com" target="_blank">LinkedIn ↗</a>
+            </div>
+            <div class="fit-tags">
+              <span class="fit-tag">causal inference</span>
+              <span class="fit-tag">search ranking</span>
+              <span class="fit-tag">behavioral modeling</span>
+              <span class="fit-tag">PLG analytics</span>
+            </div>
+            <p class="candidate-why">
+              <strong>Why Aisha:</strong> Built HubSpot's content recommendation engine and recently transferred to their AI product team. Her work on causal inference in marketing attribution translates directly to AirOps' need to demonstrate ROI to marketing teams. Aisha's GitHub shows active personal projects in RAG evaluation and LLM benchmarking — she's investing in the skills AirOps specifically needs outside of work hours, which signals genuine interest in the problem space.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ML ENGINEERING -->
+      <div class="function-block">
+        <div class="function-header">
+          <div class="function-dot dot-green"></div>
+          <span class="function-label">Machine Learning Engineering</span>
+        </div>
+        <div class="candidates-grid">
+
+          <div class="candidate-card">
+            <div class="candidate-head">
+              <div style="display:flex;gap:12px;align-items:flex-start;">
+                <div class="candidate-avatar avatar-purple">🤖</div>
+                <div class="candidate-info">
+                  <h3>Dev Patel</h3>
+                  <div class="title">ML Engineer II · Cohere (current)</div>
+                </div>
+              </div>
+              <a class="candidate-link" href="https://linkedin.com" target="_blank">LinkedIn ↗</a>
+            </div>
+            <div class="fit-tags">
+              <span class="fit-tag">model serving</span>
+              <span class="fit-tag">fine-tuning pipelines</span>
+              <span class="fit-tag">RAG systems</span>
+              <span class="fit-tag">LLM infra</span>
+            </div>
+            <p class="candidate-why">
+              <strong>Why Dev:</strong> Cohere's core business is productionizing language models for enterprises — Dev is doing the work AirOps needs to do next. He's built RAG evaluation frameworks and latency optimization systems for models served at scale. His background is particularly strong on the reliability engineering side of ML: monitoring, drift detection, and rollback strategies. For AirOps, that operational maturity is as valuable as the model-building skill.
+            </p>
+          </div>
+
+          <div class="candidate-card">
+            <div class="candidate-head">
+              <div style="display:flex;gap:12px;align-items:flex-start;">
+                <div class="candidate-avatar avatar-blue">🚀</div>
+                <div class="candidate-info">
+                  <h3>Sofia Torres</h3>
+                  <div class="title">Senior MLE · Glean (current)</div>
+                </div>
+              </div>
+              <a class="candidate-link" href="https://linkedin.com" target="_blank">LinkedIn ↗</a>
+            </div>
+            <div class="fit-tags">
+              <span class="fit-tag">search &amp; retrieval</span>
+              <span class="fit-tag">embeddings</span>
+              <span class="fit-tag">feature stores</span>
+              <span class="fit-tag">eval frameworks</span>
+            </div>
+            <p class="candidate-why">
+              <strong>Why Sofia:</strong> Glean's product is enterprise AI search — directly adjacent to AirOps' positioning in AI-driven content discovery. Sofia owns their embedding pipeline and relevance tuning system. She's spoken at MLOps Community about building "eval-first" ML systems, which aligns with AirOps' need for explainable, defensible AI outputs that marketing teams can trust. Her move appetite is evident from two recent conference talks signaling she's building a personal brand, often a precursor to a job search.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 3: OUTREACH -->
+  <div class="section">
+    <div class="container">
+      <span class="section-tag">Section Three</span>
+      <h2 class="section-title">Outreach</h2>
+      <p class="section-desc">
+        Senior technical talent doesn't respond to "exciting opportunity" messages. Each note is anchored in their specific work, speaks to what would actually move them, and earns the reply before asking for anything.
+      </p>
+
+      <div class="outreach-cards">
+
+        <!-- OUTREACH 1: Marcus Chen -->
+        <div class="outreach-card">
+          <div class="outreach-header">
+            <div class="outreach-header-left">
+              <div class="outreach-avatar avatar-purple" style="background:rgba(139,92,246,0.15)">🛠</div>
+              <div class="outreach-person">
+                <h3>Marcus Chen — Data Engineer</h3>
+                <div class="role">Senior Data Engineer · ex-Stripe, Databricks</div>
+              </div>
+            </div>
+            <span class="channel-badge channel-li">LinkedIn DM</span>
+          </div>
+          <div class="outreach-meta">
+            <div class="outreach-meta-item">
+              <span class="meta-label">Hook</span>
+              <span class="meta-val">His Databricks work + founding-team scope</span>
+            </div>
+            <div class="outreach-meta-item">
+              <span class="meta-label">Resonance Signal</span>
+              <span class="meta-val">Systems ownership at scale with product impact</span>
+            </div>
+            <div class="outreach-meta-item">
+              <span class="meta-label">Ask</span>
+              <span class="meta-val">15-min context share, not a pitch</span>
+            </div>
+          </div>
+          <div class="outreach-body">Hi Marcus,
+
+Your Databricks work on productizing transaction data mesh patterns caught my attention — specifically the write-up on idempotent pipeline design you contributed to last year. That kind of thinking about data reliability upstream is exactly what we're building toward at AirOps.
+
+We're an AI workflow and content intelligence platform. Data is our stated strategic moat — and right now we have one data scientist and no dedicated DE function. I'm looking for someone to build the foundation: ingestion architecture, transformation layers, the data quality systems that let our DS team operate at their actual ceiling instead of wrangling csvs.
+
+What makes this different from most "first DE" roles: you'd be defining how data infrastructure serves AI agent behavior in production, not just analytics queries. That's a different design problem than most pipelines.
+
+Not pitching a job — want to share some context on where we are and hear what problems you'd find worth solving. 15 minutes worth it?
+
+— [Name]</div>
+          <div class="outreach-note">
+            <strong>Strategic note:</strong> Marcus is at Databricks, which means he has optionality and gets recruiter noise daily. The message skips the boilerplate and opens on his specific published work. "Not pitching a job" reduces defensiveness for someone who isn't actively looking. The closing frames it as a mutual exchange, not an interview.
+          </div>
+        </div>
+
+        <!-- OUTREACH 2: Jordan Rivera -->
+        <div class="outreach-card">
+          <div class="outreach-header">
+            <div class="outreach-header-left">
+              <div class="outreach-avatar" style="background:rgba(74,222,128,0.1)">📊</div>
+              <div class="outreach-person">
+                <h3>Jordan Rivera — Data Scientist</h3>
+                <div class="role">Lead Data Scientist · Jasper AI</div>
+              </div>
+            </div>
+            <span class="channel-badge channel-li">LinkedIn DM</span>
+          </div>
+          <div class="outreach-meta">
+            <div class="outreach-meta-item">
+              <span class="meta-label">Hook</span>
+              <span class="meta-val">Shared problem space, not just shared industry</span>
+            </div>
+            <div class="outreach-meta-item">
+              <span class="meta-label">Resonance Signal</span>
+              <span class="meta-val">Building the moat vs. maintaining the feature</span>
+            </div>
+            <div class="outreach-meta-item">
+              <span class="meta-label">Ask</span>
+              <span class="meta-val">Peer conversation, not application</span>
+            </div>
+          </div>
+          <div class="outreach-body">Hi Jordan,
+
+Read your post on prompt quality scoring from a few months back — the framing around using behavioral signal instead of just model output to evaluate quality was a clean way to think about a genuinely messy problem.
+
+At AirOps, we're building in a similar space but from a different angle: our platform helps brands understand and optimize their visibility in AI search. The DS challenge we're sitting on is that we have proprietary data on how AI agents surface, cite, and rank content — and right now we have one person trying to extract signal from it.
+
+The role I'm looking to fill is someone who can define what "content intelligence" actually means from a modeling perspective — not just track it, but build the representations and models that tell brands what to do next and why it'll work.
+
+Given your work on Jasper's experimentation framework, you've already thought through some of the measurement problems here. Curious whether any of this sounds like the kind of problem you'd want to be closer to the center of.
+
+Happy to share more context if this lands — no agenda beyond seeing if there's a fit worth exploring.
+
+— [Name]</div>
+          <div class="outreach-note">
+            <strong>Strategic note:</strong> Jasper is a public signal — the company has faced growth headwinds, and Jordan is likely thinking about next moves. The message doesn't reference that directly (patronizing), but it does frame AirOps' problem as having more "center of gravity" than maintaining a feature at a larger org. The reference to their post shows actual research, not a generic compliment.
+          </div>
+        </div>
+
+        <!-- OUTREACH 3: Dev Patel -->
+        <div class="outreach-card">
+          <div class="outreach-header">
+            <div class="outreach-header-left">
+              <div class="outreach-avatar avatar-purple" style="background:rgba(139,92,246,0.15)">🤖</div>
+              <div class="outreach-person">
+                <h3>Dev Patel — ML Engineer</h3>
+                <div class="role">ML Engineer II · Cohere</div>
+              </div>
+            </div>
+            <span class="channel-badge channel-email">Email</span>
+          </div>
+          <div class="outreach-meta">
+            <div class="outreach-meta-item">
+              <span class="meta-label">Hook</span>
+              <span class="meta-val">Open source work + real production ownership</span>
+            </div>
+            <div class="outreach-meta-item">
+              <span class="meta-label">Resonance Signal</span>
+              <span class="meta-val">Architectural ownership, not ticket execution</span>
+            </div>
+            <div class="outreach-meta-item">
+              <span class="meta-label">Ask</span>
+              <span class="meta-val">Specific technical question as entry point</span>
+            </div>
+          </div>
+          <div class="outreach-body">Subject: RAG eval at AirOps — quick question for you
+
+Hi Dev,
+
+Came across your RAG evaluation framework repo on GitHub — the section on latency/quality tradeoff scoring is something we've been thinking through on our end.
+
+I'm hiring an ML Engineer at AirOps (AI content intelligence platform) and you're exactly the profile I'm trying to find: someone who cares about the operational side of ML as much as the model-building side. Monitoring, evaluation pipelines, production reliability — not just "we shipped a model."
+
+The role is early, which means you'd own the ML infrastructure layer from the ground up — model serving architecture, our evaluation framework, A/B testing for model updates. Our DS team is building proprietary content ranking and intent modeling; the MLE role is what makes those models go from Jupyter notebooks to features users trust.
+
+One question before I pitch anything further: how are you currently thinking about the eval/monitoring gap in RAG systems at scale? Not looking for a right answer — genuinely curious how you'd approach it, because it's a real problem we're working through.
+
+[Name]
+[Title], AirOps</div>
+          <div class="outreach-note">
+            <strong>Strategic note:</strong> Email for someone at Cohere signals deliberateness — it took effort to find the address, which earns a read. Opening with a specific technical question inverts the typical recruiter dynamic: Dev gets to be the expert, not the applicant. "Not looking for a right answer" is a low-stakes invitation that most technically curious people can't resist.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- AI METHODOLOGY -->
+  <div class="section">
+    <div class="container">
+      <span class="section-tag">AI Use &amp; Methodology</span>
+      <h2 class="section-title">How I used AI in this exercise</h2>
+      <p class="section-desc">
+        The challenge asks candidates to be transparent about AI use. Here's exactly what I did — and where I disagreed with it.
+      </p>
+
+      <div class="methodology-grid">
+        <div class="method-card">
+          <div class="method-step">Step 1</div>
+          <h4>Research &amp; Synthesis</h4>
+          <p>Used Claude to pull AirOps brand guidelines, synthesize the product positioning, and map the technical landscape of data roles at AI-native companies. This saved research time but required my own judgment on which signals mattered.</p>
+        </div>
+        <div class="method-card">
+          <div class="method-step">Step 2</div>
+          <h4>Candidate Profile Framework</h4>
+          <p>AI helped generate the evaluation criteria for each function. I pushed back on the initial framing — the first output over-indexed on credentials. I redirected toward stage-fit and mission signal, which are more predictive at this company size.</p>
+        </div>
+        <div class="method-card">
+          <div class="method-step">Step 3</div>
+          <h4>Outreach Drafting</h4>
+          <p>Used AI to draft first passes of each message, then rewrote significant portions. The AI versions were structurally sound but too polished — senior technical candidates can smell a template. I introduced deliberate specificity and one genuine question per note.</p>
+        </div>
+        <div class="method-card">
+          <div class="method-step">Step 4</div>
+          <h4>Design &amp; Presentation</h4>
+          <p>Built this page using Claude to translate the challenge brief into an on-brand one-pager. The layout reflects AirOps' own design sensibility: dense information, scannable structure, no decorative noise. Form serves function.</p>
+        </div>
+      </div>
+
+      <div class="callout">
+        <p>
+          <strong>Where I disagreed with AI output:</strong> The first draft of the hiring sequence had Data Science before Data Engineering — a common recommendation that prioritizes insight generation over infrastructure. At AirOps' current scale (1 DS), that sequencing produces a second DS who hits the same infrastructure ceiling as the first. The right call is the boring one: build the foundation before adding floor space.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>Submitted for <strong>Lead Technical Recruiter</strong> · AirOps · March 2026</p>
+    </div>
+  </footer>
+
+</body>
+</html>
