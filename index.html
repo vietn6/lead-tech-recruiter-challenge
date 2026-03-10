@@ -11,18 +11,19 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #0a0c14;
-      --surface: #10131f;
-      --surface-2: #161928;
-      --border: rgba(255,255,255,0.07);
-      --border-strong: rgba(255,255,255,0.11);
-      --text: #f0f0f5;
-      --muted: #9a9ab0;
-      --muted-2: #555570;
-      --purple: #4d65ff;
-      --purple-light: #7b90ff;
-      --purple-dim: rgba(77,101,255,0.1);
-      --purple-border: rgba(77,101,255,0.2);
+      --bg: #ffffff;
+      --surface: #f7f7f5;
+      --surface-2: #efefec;
+      --border: rgba(0,0,0,0.08);
+      --border-strong: rgba(0,0,0,0.12);
+      --text: #0f0f57;
+      --muted: #3f3f3f;
+      --muted-2: #a8abb5;
+      --blue: #4d65ff;
+      --blue-light: #6b7fff;
+      --blue-dim: rgba(77,101,255,0.08);
+      --blue-border: rgba(77,101,255,0.18);
+      --navy: #0f0f57;
     }
 
     html { scroll-behavior: smooth; }
@@ -41,7 +42,7 @@
       top: 0;
       z-index: 50;
       border-bottom: 1px solid var(--border);
-      background: rgba(9,9,11,0.85);
+      background: rgba(255,255,255,0.92);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
     }
@@ -109,7 +110,7 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 1.4px;
-      color: var(--purple-light);
+      color: var(--blue-light);
       margin-bottom: 20px;
       font-family: 'Inconsolata', monospace;
     }
@@ -117,7 +118,7 @@
       display: inline-block;
       width: 6px; height: 6px;
       border-radius: 50%;
-      background: var(--purple);
+      background: var(--blue);
     }
     .hero h1 {
       font-size: clamp(28px, 5vw, 42px);
@@ -202,7 +203,7 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 1.5px;
-      color: var(--purple-light);
+      color: var(--blue-light);
       margin-bottom: 8px;
       font-family: 'Inconsolata', monospace;
     }
@@ -236,7 +237,7 @@
       border-radius: 8px;
     }
     .question-item .q-icon {
-      color: var(--purple);
+      color: var(--blue);
       font-size: 14px;
       flex-shrink: 0;
       margin-top: 1px;
@@ -263,11 +264,11 @@
       border-bottom: 1px solid var(--border);
     }
     .deliverable-row:last-child { border-bottom: none; }
-    .deliverable-row:nth-child(even) { background: rgba(255,255,255,0.01); }
+    .deliverable-row:nth-child(even) { background: rgba(0,0,0,0.02); }
     .del-num {
       font-size: 12px;
       font-weight: 700;
-      color: var(--purple-light);
+      color: var(--blue-light);
       text-align: center;
     }
     .del-body h4 { font-size: 14px; font-weight: 600; color: var(--text); }
@@ -300,7 +301,7 @@
     }
     .check-item::before {
       content: '→';
-      color: var(--purple);
+      color: var(--blue);
       flex-shrink: 0;
       font-size: 13px;
       margin-top: 2px;
